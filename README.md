@@ -25,4 +25,5 @@ npm run dev
 ## Error: error:0308010C:digital envelope routines::unsupported
 
 > solution : https://github.com/webpack/webpack/issues/14532#issuecomment-947012063
+> 
 > set the env variable as `export NODE_OPTIONS=--openssl-legacy-provider`
