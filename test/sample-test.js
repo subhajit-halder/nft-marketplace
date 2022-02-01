@@ -5,9 +5,15 @@ describe.only("NFTMarket_royalty", function () {
   it("If royalty is working", async function () {
     // deploy market
     const Market = await ethers.getContractFactory("NFTMarket_royalty");
+    const ownerListingPrice = await ethers.utils.parseUnits("10", "ether");
+    // const market = await Market.deploy(ownerListingPrice);
     const market = await Market.deploy();
     await market.deployed();
+    // market.setListingPrice(ownerListingPrice);
     const marketAddress = market.address;
+
+    // provider
+    provider = ethers.provider;
 
     // deploy nft
     const NFT = await ethers.getContractFactory("NFT");
@@ -57,6 +63,17 @@ describe.only("NFTMarket_royalty", function () {
         return item;
       })
     );
-    console.log("items: ", items);
+
+    let sellerBalance = console.log("items: ", items);
+    console.log("listing price", await market.getListingPrice().toString());
+    console.log("owner listing price", ownerListingPrice.toString());
+    console.log(
+      "buyer balance",
+      await provider.getBalance(buyerAddress.address)
+    );
+    console.log(
+      "owner balance",
+      await provider.getBalance(ownerAddress.address)
+    );
   });
 });

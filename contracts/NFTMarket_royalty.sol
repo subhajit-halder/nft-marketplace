@@ -29,6 +29,10 @@ contract NFTMarket_royalty is
         listingPrice = 1.0 ether;
     }
 
+    // constructor (uint256 price) {
+    //   setListingPrice(price);
+    // }
+
     struct MarketItem {
         uint256 itemId;
         address nftContract;
